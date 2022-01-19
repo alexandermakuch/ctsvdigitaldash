@@ -1,8 +1,3 @@
-
-
-
-
-
 import obd
 import time
 
@@ -12,11 +7,11 @@ x=0
 
 while x==0:
 
-    t = time.process_time()
+    t = time.time()
 
-    c = obd.commands['RPM']
-    print(c)
+    # c = obd.commands['RPM']
+    # print(c)
 
-    elapsed_time = time.process_time() - t
+    elapsed_time = time.time() - t
 
     print(elapsed_time)
