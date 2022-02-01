@@ -3,16 +3,44 @@ import time
 import numpy as np
 
 connection = obd.OBD()
-com = obd.commands.RPM
-queries = 1000
-times = np.zeros(queries)
+rpm_command = obd.commands.RPM
+speed_command = obd.commands.SPEED
+temp_command = obd.commands.OIL_TEMP
+# queries = 1000
+# times = np.zeros(queries)
 
-for i in range(queries):
+# for i in range(queries):
+#     t=time.time()
+#     rpm = connection.query(rpm_command)
+#     times[i] = time.time()-t
+
+# mean_time = np.mean(times)
+# print('Average query time was {} seconds for 1000 iterations ({} ms)'.format(mean_time, mean_time*1000))
+
+
+def calcSpeed(rpm_prev,speed_prev,rpm_current):
+    '''
+    inputs: rpm at last recorded speed, previous speed, current rpm
+    output: speed at current rpm
+    '''
+    if rpm_prev > rpm_current:
+        return speed_prev
+    else:
+        return (speed_prev*rpm_current / rpm_prev)
+
+
+def routine1():
     t=time.time()
-    rpm = connection.query(com)
-    times[i] = time.time()-t
+    rpm = connection.query(rpm_command)
+    speed = connection.query(rpm_command)
+    temp = connection.query(rpm_command)
+    print('Query took {} ms'.format(1000*(time.time()-t)))
 
-mean_time = np.mean(times)
-print('Average query time was {} seconds for 1000 iterations ({} ms)'.format(mean_time, mean_time*1000))
+    return rpm,speed,temp
 
 
+# def routine2():
+#     pass
+
+
+#     return 
