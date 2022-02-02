@@ -1,6 +1,6 @@
 import obd
 import time
-import numpy as np
+from Calculations import vehicle
 
 connection = obd.OBD()
 rpm_command = obd.commands.RPM
@@ -16,6 +16,8 @@ temp_command = obd.commands.OIL_TEMP
 
 # mean_time = np.mean(times)
 # print('Average query time was {} seconds for 1000 iterations ({} ms)'.format(mean_time, mean_time*1000))
+
+car = vehicle()
 
 
 def calcSpeed(rpm_prev,speed_prev,rpm_current):
@@ -35,8 +37,8 @@ def routine1():
     speed = connection.query(rpm_command)
     temp = connection.query(rpm_command)
     print('Query took {} ms'.format(1000*(time.time()-t)))
-
-    return rpm,speed,temp
+    car.findgear(rpm.value.magnitude,speed.value.magnitude)
+    return rpm.value.magnitude,speed.value.magnitude,temp.value.magnitude,vehicle.gear
 
 
 # def routine2():

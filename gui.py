@@ -16,6 +16,7 @@ TEMP_C = 0
 
 #~~~ MODE = 0 -> standard; MODE = 1 -> experimental speed based on rpm calculation ~~~# # not added yet
 MODE = 0
+GEAR = 1
 
  
 class MyPaintApp(App):
@@ -23,11 +24,13 @@ class MyPaintApp(App):
         self.rpm_label=Label(text='RPM: {}'.format(RPM))
         self.speed_label=Label(text='Speed: {}mph'.format(SPEED))
         self.temp_label=Label(text='Oil Temperature: {} celsius'.format(TEMP_C))
+        self.gear_label=Label(text='Gear {}'.format(GEAR))
         self.start=Button(text='Start measurements')
-        root = GridLayout(cols=4)
+        root = GridLayout(cols=5)
         root.add_widget(self.rpm_label)
         root.add_widget(self.speed_label)
         root.add_widget(self.temp_label)
+        root.add_widget(self.gear_label)
         root.add_widget(self.start)
 
         self.start.bind(on_release=self.record)
@@ -40,9 +43,9 @@ class MyPaintApp(App):
     
     def record(self, _):
         if not MODE:
-            global RPM, SPEED, TEMP_C
+            global RPM, SPEED, TEMP_C, GEAR
             for _ in range(9999):
-                RPM, SPEED, TEMP_C = main.routine1()
+                RPM, SPEED, TEMP_C, GEAR = main.routine1()
                 self.update_labels()
         # else:
         #     main.routine2()
