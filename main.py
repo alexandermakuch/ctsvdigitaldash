@@ -37,7 +37,10 @@ def routine1():
     speed = connection.query(rpm_command)
     temp = connection.query(rpm_command)
     print('Query took {} ms'.format(1000*(time.time()-t)))
-    car.findgear(rpm.value.magnitude,speed.value.magnitude)
+    try:
+        car.findgear(rpm.value.magnitude,speed.value.magnitude)
+    except AttributeError:
+        print('error calculating gear!')
     return rpm.value.magnitude,speed.value.magnitude,temp.value.magnitude,vehicle.gear
 
 
