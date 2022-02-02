@@ -41,7 +41,12 @@ def routine1():
         car.findgear(rpm.value.magnitude,speed.value.magnitude)
     except AttributeError:
         print('error calculating gear!')
-    return rpm.value.magnitude,speed.value.magnitude,temp.value.magnitude,vehicle.gear
+    try:
+        return rpm.value.magnitude,speed.value.magnitude,temp.value.magnitude,vehicle.gear
+    except:
+        print('failed returning values!')
+        return 0, 0, 0, 0
+        
 
 
 # def routine2():
