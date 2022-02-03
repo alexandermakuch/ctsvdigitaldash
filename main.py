@@ -36,6 +36,7 @@ def routine1():
     rpm = connection.query(rpm_command)
     speed = connection.query(rpm_command)
     temp = connection.query(rpm_command)
+    print(rpm,speed,temp)
     print('Query took {} ms'.format(1000*(time.time()-t)))
     try:
         car.findgear(rpm.value.magnitude,speed.value.magnitude)
