@@ -5,9 +5,9 @@ import numpy as np
 
 
 
-data = np.zeros(9)
+data = []
 
-connection = obd.OBD()
+connection = obd.OBD('COM4')
 rpm_command = obd.commands.RPM
 speed_command = obd.commands.SPEED
 temp_command = obd.commands.OIL_TEMP
@@ -21,16 +21,13 @@ five = obd.commands.FUEL_LEVEL
 
 
 
-data[0] = connection.query(rpm_command)
-data[1] = connection.query(speed_command)
-data[2] = connection.query(temp_command)
-data[3] = connection.query(four)
-data[4] = connection.query(five)
-# data[5] = connection.query(six)
-# data[6] = connection.query(seven)
-# data[7] = connection.query(eight)
-# data[8] = connection.query(nine)
+data.append(connection.query(rpm_command))
+data.append(connection.query(speed_command))
+data.append(connection.query(temp_command))
+data.append(connection.query(four))
+data.append(connection.query(five))
 
-file = open('data_save','wb')
+
+file = open('data_save2','wb')
 pickle.dump(data, file)
 file.close()
