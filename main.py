@@ -6,6 +6,8 @@ connection = obd.OBD()
 rpm_command = obd.commands.RPM
 speed_command = obd.commands.SPEED
 temp_command = obd.commands.OIL_TEMP
+
+
 # queries = 1000
 # times = np.zeros(queries)
 

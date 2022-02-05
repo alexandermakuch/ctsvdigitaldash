@@ -26,7 +26,7 @@ class MyPaintApp(App):
         self.rpm_label=Label(text='RPM: {}'.format(self.RPM))
         self.speed_label=Label(text='Speed: {}mph'.format(self.SPEED))
         self.temp_label=Label(text='Oil Temperature: {} celsius'.format(self.TEMP_C))
-        self.gear_label=Label(text='Gear {}'.format(GEAR))
+        self.gear_label=Label(text='Gear {}'.format(self.GEAR))
         self.start=Button(text='Start measurements')
         root = GridLayout(cols=5)
         root.add_widget(self.rpm_label)
